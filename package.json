@@ -1,0 +1,20 @@
+{
+  "name": "mkdevFullstackJS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "answer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmtrPn/mkdevFullstackJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmtrPn/mkdevFullstackJS/issues"
+  },
+  "homepage": "https://github.com/DmtrPn/mkdevFullstackJS#readme"
+}
