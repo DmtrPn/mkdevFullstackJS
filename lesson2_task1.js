@@ -1,3 +1,51 @@
+Адаптируйте указанные сущности под выбранную вами тематику.
+Обязательно сохраните связь между Пользователями, и N сущностями другого типа.
+Роботы и Монстры в нашем приложении очень похожи, однако наличие обоих
+позволяет лучше видеть места, где код будет "разрастаться" при появлении
+новых моделей (типов). Что позволяет правильнее структурировать файлы
+и папки и распределить код между ними.
+
+Три таблицы: пользователи, спектакили и комментарии
+Users {
+  id: Id,
+  role: UserRole, // enums.of("viewer", "actor", "director", "admin")
+  userName: String,
+  inclusionDate: Date,
+  exclusionDate: Date,
+  countOfPerfomance: Integer
+}
+
+Perfomance {
+  id: Integer,
+  title: String,
+  description: String,
+  actorsCount: Integer,
+  premiereDate: Date,
+  closingDate: Date,
+  visitors: Integer,
+  rating: Float,
+  commentCount: Integer
+}
+
+PerfomanceComment {
+  id: Id,
+  perfimanceId: Id,
+  formUserId: Id,
+  toUserId: Id,
+  text: String,
+  createdIn: Date,
+  editedOn: Date
+}
+
+Связи:
+Актер - спектакль: n - m
+Режиссер - спектакль: 1 - n
+Зритель - спектакль (рейтинг посетитель): n - m
+Спектакль - комментарий: 1 - n
+
+
+
+
 В нашем демо-приложении имеются три типа сущностей: Пользователи, Роботы и Монстры.
 Каждый пользователь владеет одним или более Роботом и Монстром.
 В случае реляционных БД мы задумались бы о первичных и внешних ключах.
@@ -28,45 +76,3 @@
 Связи
 Пользователи - Роботы: 1 - n
 Пользователи - Монстры: 1 - n
-
-
-Адаптируйте указанные сущности под выбранную вами тематику.
-Обязательно сохраните связь между Пользователями, и N сущностями другого типа.
-Роботы и Монстры в нашем приложении очень похожи, однако наличие обоих
-позволяет лучше видеть места, где код будет "разрастаться" при появлении
-новых моделей (типов). Что позволяет правильнее структурировать файлы
-и папки и распределить код между ними.
-
-Таблицы: труппа (актеры и режиссеры), зрители, администратор, спектакли
-Users {
-  id: Integer,
-  userName: String,
-  inclusionDate: Date
-}
-Зритель { // Включает Users
-  visitedPerfomance: Array of String
-}
-Труппа { // Включает Users
-  role: String, // actor or dirictor
-  perfomances: Array of String
-  exclusionDate: Date
-}
-Администратор { // Включает Труппу с role: admin
-    mainAdmin: Boolean
-}
-
-Спектакль {
-  id: Integer,
-  title: String,
-  actors: Array of String,
-  director: String,
-  rating: Float,
-  visitors: Integer,
-  premiereDate: Date,
-  closingDate: Date || ""
-}
-
-Связи:
-Труппа(актер) - спектакль: n - m
-Труппа(режиссер) - спектакль: 1 - n
-Зритель - спектакль (рейтинг посетитель): n - m
