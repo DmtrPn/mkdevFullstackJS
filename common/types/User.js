@@ -1,7 +1,7 @@
 let T = require("tcomb")
 let {Id, makeId} = require("./Id")
 let Faker = require("faker")
-let Slug = require("speakingurl")
+let slug = require("speakingurl")
 let Chance = require("chance")
 
 let UserRole = T.enums.of("viewer", "actor", "director", "admin")
@@ -16,11 +16,7 @@ let User = T.struct({
 }, "User")
 
 let UserForm = T.struct({
-  role: UserRole,
-  userName: T.String,
-  inclusionDate: T.Date,
-  exclusionDate: T.Date,
-  countOfPerfomance: T.Number
+  userName: T.String
 }, "UserForm")
 
 let makeUser = (data) => {
@@ -30,7 +26,7 @@ let makeUser = (data) => {
   return User(merge({
     id: makeId(),
     role: "admin",
-    userName: Slug(Faker.name.findName()),
+    userName: slug(Faker.name.findName()),
     inclusionDate: inclusionDate,
     exclusionDate: exclusionDate,
     countOfPerfomance: chance.natural({min: 0, max: 15})
