@@ -6,9 +6,9 @@ let Chance = require("chance")
 let PerfomanceComment = T.struct({
   id: Id,
   perfomanceId: Id,
-  fromUserId: Id, // кто написал комментарий
-  toUserId: Id, // на чей комментарий получен ответ.
-                // отвечать могут пользователи с ролью actor и director
+  fromUserId: Id, // user id, author of commentary
+  toUserId: Id, // user id, the author of the original comment
+              // user with role `actor` or `director` can answer to other comment
   text: T.String,
   createdIn: T.Date,
   editedOn: T.Date
