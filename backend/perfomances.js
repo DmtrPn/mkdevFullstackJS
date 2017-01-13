@@ -1,7 +1,7 @@
-var Router = require('koa-router');
-var router = Router({ prefix: '/perfomances' })
+let Router = require('koa-router');
+let router = Router({ prefix: '/perfomances' })
 
-var perfomances = [
+let perfomances = [
   {
     id: 101,
     title: "Hamlet",
@@ -27,18 +27,16 @@ function *sendPerfomances(next){
 }
 
 function *sendPerfomanceWithId(next){
-  var ctx = this
-  var currPerfomance = perfomances.filter(function(perfomance){
+  let ctx = this
+  let currPerfomance = perfomances.filter(function(perfomance){
       if(perfomance.id == ctx.params.id){
           return true;
       }
   })
   if (currPerfomance.length == 1) {
       this.body = currPerfomance[0]
-  }
-  else {
-      this.response.status = 404
-      this.body =`id ${ctx.params.id} not found`
+  } else {
+    this.throw(404)
   }
   yield next;
 }
@@ -49,10 +47,10 @@ function *addNewPerfomance(next){
       !this.request.body.actorsCount ||
       !this.request.body.premiereDate)
   {
-    this.response.status = 400
-    this.body = "Bad Request"
+    this.throw(400)
   } else {
-      var newId = perfomances[perfomances.length - 1].id + 1
+    console.log('not her')
+      let newId = perfomances[perfomances.length - 1].id + 1
       perfomances.push({
           id: newId,
           titel: this.request.body.title,
@@ -74,7 +72,7 @@ function *updatePerfomanceWithId(next){
     this.response.status = 400
     this.body = "Bad Request"
   } else {
-    var updateIndex = perfomances.map(function(perfomance){
+    let updateIndex = perfomances.map(function(perfomance){
             return perfomance.id
           }).indexOf(parseInt(this.params.id))
     if(updateIndex === -1) {
@@ -100,7 +98,7 @@ function *updatePerfomanceWithId(next){
 }
 
 function *deletePerfomanceWithId(next){
-  var removeIndex = perfomances.map(function(perfomance){
+  let removeIndex = perfomances.map(function(perfomance){
     return perfomances.id
   }).indexOf(this.params.id)
   if(removeIndex === -1){
