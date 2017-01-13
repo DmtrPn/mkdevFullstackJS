@@ -1,27 +1,7 @@
-let Koa = require('koa')
-let Router = require('koa-router')
-let KoaMount = require('koa-mount')
-let KoaStatic = require('koa-static')
-let perfomances = require('./perfomances.js')
-let errors = require('./errors.js')
-let logger = require('./logger.js')
+let app = require('./app')
 
-let app = new Koa()
-let router = new Router()
+let port = process.argv[2] || 8080
 
-app.use(logger({}))
-app.use(errors({}))
+app.listen(port)
 
-app.use(function* (next) {
-  yield next
-  if (!this.response.body) {
-    this.throw(404)
-  }
-})
-
-app.use(perfomances.routes())
-app.use(router.allowedMethods())
-app.use(KoaMount('/', KoaStatic('../public')))
-
-
-app.listen(8080)
+console.log('HTTP server is listening on port ', port)

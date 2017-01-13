@@ -7,7 +7,9 @@ module.exports = function (opts = {}) {
       yield next
     } catch (err) {
       this.response.status = err.status || 500
+
       this.response.body = Fs.readFileSync(`../public/errors/${this.response.status}.html`)
+        || Http.STATUS_CODES[this.response.status]
     }
   }
 }

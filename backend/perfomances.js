@@ -55,7 +55,7 @@ function *addNewPerfomance(next){
           id: newId,
           titel: this.request.body.title,
           description: this.request.body.description,
-          actorsCount: his.request.body.actorsCount,
+          actorsCount: this.request.body.actorsCount,
           premiereDate: this.request.body.premiereDate
       });
       this.body = `New perfomance created with id: ${newId}`
