@@ -3,13 +3,13 @@ let Router = require('koa-router')
 let KoaMount = require('koa-mount')
 let KoaStatic = require('koa-static')
 let perfomances = require('./perfomances.js')
-let errors = require('./errors.js')
-let logger = require('./logger.js')
+let errors = require('./middlewares/errors.js')
+let logging = require('./middlewares/logging.js')
 
 let app = new Koa()
 let router = new Router()
 
-app.use(logger({}))
+app.use(logging({}))
 app.use(errors({}))
 
 app.use(function* (next) {
