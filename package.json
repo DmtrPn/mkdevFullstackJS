@@ -34,7 +34,8 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "speakingurl": "^11.0.0",
-    "tcomb": "^3.2.16"
+    "tcomb": "^3.2.16",
+    "winston": "^2.3.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
