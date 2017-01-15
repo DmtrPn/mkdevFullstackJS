@@ -2,7 +2,7 @@ let Http = require('http')
 let Fs = require('fs')
 let {stderrLogger} = require('../loggers.js')
 
-module.exports = function (opts = {}) {
+module.exports = function () {
   return function* errorsMiddleware(next) {
     try {
       yield next
