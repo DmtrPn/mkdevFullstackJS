@@ -49,8 +49,8 @@ if (NODE_ENV == 'production') {
           let date = new Date()
           let message = process.stderr.isTTY ?
             Winston.config.colorize(options.level, options.message) : options.message
-          let errorMessage = options.meta.message
-          return `[${date}] ${message} ${errorMessage}`
+          let stack = options.meta.stack
+          return `[${date}] ${message} ${stack}`
         },
       }),
       new Winston.transports.File({
@@ -126,8 +126,8 @@ if (NODE_ENV == 'production') {
           let date = new Date()
           let message = process.stderr.isTTY ?
             Winston.config.colorize(options.level, options.message) : options.message
-          let errorMessage = options.meta.message
-          return `[${date}] ${message} ${errorMessage}`
+          let stack = options.meta.stack
+          return `[${date}] ${message} ${stack}`
         },
       }),
       new Winston.transports.File({
