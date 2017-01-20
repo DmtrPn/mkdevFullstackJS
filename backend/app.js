@@ -9,6 +9,21 @@ let Logging = require('./middlewares/logging.js')
 let app = new Koa()
 let router = new Router()
 
+require('./api/perfomance-comments/create')
+require('./api/perfomance-comments/detail')
+require('./api/perfomance-comments/edit')
+require('./api/perfomance-comments/index')
+
+require('./api/perfomances/create')
+require('./api/perfomances/detail')
+require('./api/perfomances/edit')
+require('./api/perfomances/index')
+
+require('./api/users/create')
+require('./api/users/detail')
+require('./api/users/edit')
+require('./api/users/index')
+
 app.use(Logging())
 app.use(Errors())
 
