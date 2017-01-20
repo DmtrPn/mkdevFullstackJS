@@ -16,7 +16,6 @@ router.post('/api/perfomances', function* (next) {
         visitors: 0,
         rating: 0,
         commentCount: 0
-
     })
 
     yield this.checkPermissions(user)

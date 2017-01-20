@@ -34,6 +34,7 @@ app.use(function* (next) {
   }
 })
 
+
 app.use(perfomances.routes())
 app.use(router.allowedMethods())
 app.use(KoaMount('/', KoaStatic('../public')))
