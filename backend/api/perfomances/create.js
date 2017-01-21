@@ -1,11 +1,11 @@
 let {merge} = require('ramda')
 let db = require('../../db')
 let router = require('../../router')
-let {Perfomance, PerfomanceForm} = require('../../../common/types/Perfomance')
+let {Perfomance} = require('../../../common/types/Perfomance')
 let UUID = require('node-uuid')
 
 router.post('/api/perfomances', function* (next) {
-    let {params, body: perfomanceForm} = this.request
+    let {body: perfomanceForm} = this.request
 
     let perfomance = merge(perfomanceForm, {
         id: UUID.v4,
@@ -19,12 +19,9 @@ router.post('/api/perfomances', function* (next) {
         commentCount: 0
     })
 
-    yield this.checkPermissions(user)
-    yield this.checkCreateConflicts('perfomances', perfomance)
-
     db.perfomances.push(perfomance)
 
-    this.response.status = 200
+    this.response.status = 201
     this.response.body = {
         data: perfomance
     }

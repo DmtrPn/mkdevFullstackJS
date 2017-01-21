@@ -3,10 +3,12 @@ let db = require('../../db')
 
 router.get('/api/perfomanceComments', function* (next) {
 
-    let {params} = this.request
-
-    this.response.status = 201
-    this.response.body = db.perfomanceComments
+    if (db.perfomanceComments) {
+        this.response.status = 200
+        this.response.body = db.perfomanceComments
+    } else {
+        this.throw(404)
+    }
 
     yield next;
 })
