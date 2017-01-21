@@ -4,7 +4,7 @@ let router = require('../../router')
 let {Perfomance, PerfomanceForm} = require('../../../common/types/Perfomance')
 let UUID = require('node-uuid')
 
-router.post('/perfomances', function* (next) {
+router.post('/api/perfomances', function* (next) {
     let {params, body: perfomanceForm} = this.request
 
     let perfomance = merge(perfomanceForm, {
@@ -24,7 +24,7 @@ router.post('/perfomances', function* (next) {
 
     db.perfomances.push(perfomance)
 
-    this.response.status = 201
+    this.response.status = 200
     this.response.body = {
         data: perfomance
     }

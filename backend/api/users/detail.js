@@ -1,20 +1,20 @@
 let router = require('../../router')
 let db = require('../../db')
 
-router.get('/api/perfomances/:id([0-9]{3,})', function* (next) {
+router.get('/api/users/:id([0-9]{3,})', function* (next) {
 
     let {params , body: form} = this.request
 
-    let currPerfomance = db.perfomances.filter(function(perfomance){
-        if(perfomance.id == params.id){
+    let currUser = db.users.filter(function(user){
+        if(user.id == params.id){
             return true;
         }
     })
 
-    if (currPerfomance.length == 1) {
+    if (currUser.length == 1) {
         this.response.status = 201
         this.response.body = {
-            data: currPerfomance[0]
+            data: currUser[0]
         }
     } else {
         this.throw(404)
