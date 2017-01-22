@@ -1,18 +1,19 @@
 let router = require('../../router')
 let db = require('../../db')
-let {findIndex} = require('ramda')
+let {mergeWithKey} = require('ramda')
 
 router.patch('/api/perfomances/:id([0-9]{3,})', function* (next) {
 
     let {params , body: form} = this.request
 
-    let index = findIndex(p => p.id == params.id, db.perfomances)
+    let mergeValues = (key, originValue, newValue) =>
+        key != 'id' || k != 'premiereDate' ? newValue : originValue
 
-    if (index >= 0) {
-        db.perfomances[index] = form
+    if (db.perfomances[params.id]) {
+        db.perfomances[params.id] = mergeWithKey(mergeValues, db.perfomance[params.id], form)
         this.response.status = 200
         this.response.body = {
-            data: db.perfomances[index]
+            data: form
         }
     } else {
         this.throw(404)

@@ -1,12 +1,11 @@
 let router = require('../../router')
 let db = require('../../db')
-let {find} = require('ramda')
 
 router.get('/api/users/:id([0-9]{3,})', function* (next) {
 
     let {params} = this.request
 
-    let currentUser = find(u => u.id == params.id, db.users)
+    let currentUser = db.users[params.id]
 
     if (currentUser) {
         this.response.status = 200

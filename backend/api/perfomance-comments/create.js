@@ -5,19 +5,16 @@ let {PerfomanceComment} = require('../../../common/types/PerfomanceComment')
 let UUID = require('node-uuid')
 
 router.post('/api/perfomanceComments', function* (next) {
+
     let {body: perfomanceCommentForm} = this.request
 
     let perfomanceComment = merge(perfomanceCommentForm, {
         id: UUID.v4,
-        perfomanceId: this.request.body.perfomanceId,
-        fromUserId: this.request.body.fromUserId,
-        toUserId: this.request.body.toUserId,
-        text: this.request.body.text,
-        createdIn: new Date(),
+        createdOn: new Date(),
         editedOn: 0
     })
-
-    db.perfomanceComments.push(perfomanceComment)
+    perfomanceComment = {perfomanceComment.id: perfomanceComment}
+    db.perfomanceComments = Object.assign(perfomanceComment , db.perfomanceComments)
 
     this.response.status = 201
     this.response.body = {

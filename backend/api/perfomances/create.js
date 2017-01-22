@@ -9,17 +9,13 @@ router.post('/api/perfomances', function* (next) {
 
     let perfomance = merge(perfomanceForm, {
         id: UUID.v4,
-        title: this.request.body.title,
-        description: this.request.body.description,
-        actorsCount: this.request.body.actorsCount,
-        premiereDate: this.request.body.premiereDate,
         closingDate: 0,
         visitors: 0,
         rating: 0,
         commentCount: 0
     })
-
-    db.perfomances.push(perfomance)
+    perfomance = {perfomance.id: perfomance}
+    db.perfomances = Object.assign(perfomance, db.perfomances)
 
     this.response.status = 201
     this.response.body = {

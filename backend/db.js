@@ -1,5 +1,5 @@
-let perfomances = [
-    {
+let perfomances = {
+    '101': {
         id: 101,
         title: "Hamlet",
         description: "Good story",
@@ -9,20 +9,22 @@ let perfomances = [
         visitors: 98,
         rating: 5,
         commentCount: 3
-    }]
+    }
+}
 
-let users = [
-    {
+let users = {
+    '103': {
         id: 103,
         role: 'admin',
         userName: 'David',
         inclusionDate: new Date(2001, 07, 01),
         exclusionDate: null,
         countOfPerfomance: 0
-    }]
+    }
+}
 
-let perfomanceComments = [
-    {
+let perfomanceComments = {
+    '107': {
         id: 107,
         perfomanceId: 101,
         fromUserId: 103,
@@ -31,6 +33,6 @@ let perfomanceComments = [
         createdIn: new Date(),
         editedOn: 0
     }
-]
+}
 
 module.exports = {perfomances, users, perfomanceComments}

@@ -10,14 +10,12 @@ router.post('/api/users/:role', function* (next) {
     let user = merge(userForm, {
         id: UUID.v4,
         role: params.role,
-        userName: this.request.body.userName,
         inclusionDate: new Date(),
         exclusionDate: 0,
         countOfPerfomance: 0
-
     })
-
-    db.users.push(user)
+    user = {user.id: user}
+    db.users = Object.assign(user, db.users)
 
     this.response.status = 201
     this.response.body = {
