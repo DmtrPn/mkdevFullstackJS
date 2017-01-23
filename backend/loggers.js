@@ -9,7 +9,6 @@ if (NODE_ENV == 'production') {
         level: 'info',
         stderrLevels: [],
         formatter: (options) => {
-
           let date = new Date()
           let level = process.stdout.isTTY ? Winston.config.colorize(options.level,
             options.level.toUpperCase()) : options.message
