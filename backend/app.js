@@ -17,6 +17,7 @@ require('./api/perfomance-comments/index')
 
 require('./api/perfomances/create')
 require('./api/perfomances/detail')
+require('./api/perfomances/detail')
 require('./api/perfomances/edit')
 require('./api/perfomances/index')
 
@@ -24,7 +25,6 @@ require('./api/users/create')
 require('./api/users/detail')
 require('./api/users/edit')
 require('./api/users/index')
-
 
 app.use(function* (next) {
     yield next

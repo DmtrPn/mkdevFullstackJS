@@ -1,3 +1,4 @@
 # Ignore list
 /node_modules/
 /backend/logs/
+/.idea

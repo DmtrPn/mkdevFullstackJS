@@ -1,4 +1,4 @@
-let Router = require('koa-router');
+let Router = require('koa-router')
 let router = Router({ prefix: '/perfomances' })
 
 let perfomances = [
@@ -12,7 +12,7 @@ let perfomances = [
     visitors: 98,
     rating: 5,
     commentCount: 3
-  }];
+  }]
 
 router
   .get('/', sendPerfomances)
