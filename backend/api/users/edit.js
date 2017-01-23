@@ -1,16 +1,13 @@
 let router = require('../../router')
 let db = require('../../db')
-let {mergeWithKey} = require('ramda')
+let {merge} = require('ramda')
 
 router.patch('/api/users/:id([0-9]{3,})', function* (next) {
 
     let {params , body: form} = this.request
 
-    let mergeValues = (key, originValue, newValue) =>
-        key != 'id' || k != 'inclusionDate' || k != 'role' ? newValue : originValue
-
     if (db.users[params.id]) {
-        db.users[params.id] = mergeWithKey(mergeValues, db.users[params.id], form)
+        db.users[params.id] = merge(db.users[params.id], form)
         this.response.status = 200
         this.response.body = {
             data: form

@@ -7,19 +7,19 @@ let UUID = require('node-uuid')
 router.post('/api/perfomances', function* (next) {
     let {body: perfomanceForm} = this.request
 
-    let perfomance = merge(perfomanceForm, {
-        id: UUID.v4,
+    let id = UUID.v4()
+
+    db.perfomances[id] = merge(perfomanceForm, {
+        id: id,
         closingDate: 0,
         visitors: 0,
         rating: 0,
         commentCount: 0
     })
-    perfomance = {perfomance.id: perfomance}
-    db.perfomances = Object.assign(perfomance, db.perfomances)
 
     this.response.status = 201
     this.response.body = {
-        data: perfomance
+        data: db.perfomances[id]
     }
     yield next
 })

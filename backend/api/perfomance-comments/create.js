@@ -8,17 +8,17 @@ router.post('/api/perfomanceComments', function* (next) {
 
     let {body: perfomanceCommentForm} = this.request
 
-    let perfomanceComment = merge(perfomanceCommentForm, {
-        id: UUID.v4,
+    let id = UUID.v4()
+
+    db.perfomanceComments[id] = merge(perfomanceCommentForm, {
+        id: id,
         createdOn: new Date(),
         editedOn: 0
     })
-    perfomanceComment = {perfomanceComment.id: perfomanceComment}
-    db.perfomanceComments = Object.assign(perfomanceComment , db.perfomanceComments)
 
     this.response.status = 201
     this.response.body = {
-        data: perfomanceComment
+        data: db.perfomanceComments[id]
     }
     yield next
 })
