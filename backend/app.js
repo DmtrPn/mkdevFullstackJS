@@ -34,6 +34,11 @@ app.use(function* (next) {
 })
 
 app.use(router.allowedMethods())
-app.use(KoaMount('/', KoaStatic('../public')))
+
+if (process.env.NODE_ENV == "production") {
+    app.use(KoaMount('/', KoaStatic('../frontend')))
+} else {
+    app.use(KoaMount('/', KoaStatic('../public')))
+}
 
 module.exports = app

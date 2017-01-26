@@ -1,12 +1,23 @@
-let LiveReloadPlugin = require("webpack-livereload-plugin")
+let ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-    entry: './public/app.js',
+    entry: './frontend/app.js',
     output: {
         filename: 'bundle.js',
-        path: './public'
+        path: './frontend'
     },
+    module: {
+        rules: [{
+            test: /\.css$/,
+            exclude: /node_modules/,
+            loader: ExtractTextPlugin.extract({
+                loader: 'css-loader?sourceMap'
+            })
+        }]
+    },
+    devtool: 'source-map',
     plugins: [
-        new LiveReloadPlugin({})
+        new ExtractTextPlugin({ filename: 'bundle.css', disable: false, allChunks: true })
     ]
+
 }
