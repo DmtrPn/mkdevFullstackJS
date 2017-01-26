@@ -19,7 +19,7 @@ module.exports = {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 loader: ExtractTextPlugin.extract({
-                    loader: 'css-loader?sourceMap'})
+                    loader: 'css-loader'})
             }
         ]
     },
