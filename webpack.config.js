@@ -1,21 +1,28 @@
 let ExtractTextPlugin = require('extract-text-webpack-plugin')
+let Path = require('path')
 
 module.exports = {
     entry: './frontend/app.js',
     output: {
+        path: Path.resolve(__dirname, 'public'),
         filename: 'bundle.js',
-        path: './frontend'
+        publicPath: "http://localhost:2992/public/"
     },
-    module: {
-        rules: [{
-            test: /\.css$/,
-            exclude: /node_modules/,
-            loader: ExtractTextPlugin.extract({
-                loader: 'css-loader?sourceMap'
-            })
-        }]
+    maodule: {
+        rules: [
+            {
+                text: /\.js$/,
+                loader: 'babel',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                loader: ExtractTextPlugin.extract({
+                    loader: 'css-loader?sourceMap'})
+            }
+        ]
     },
-    devtool: 'source-map',
     plugins: [
         new ExtractTextPlugin({ filename: 'bundle.css', disable: false, allChunks: true })
     ]
