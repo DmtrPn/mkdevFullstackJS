@@ -4,6 +4,9 @@
   "description": "",
   "main": "answer.js",
   "scripts": {
+    "webpack": "webpack --config webpack.config.js",
+    "webpack-watch": "webpack --watch --config webpack.config.js",
+    "webpack-server": "webpack-dev-server --config webpack.server.js --inline --port 8088",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,13 +35,19 @@
     "koa-static": "^2.0.0",
     "node-uuid": "^1.4.7",
     "ramda": "^0.23.0",
-    "react": "^15.4.1",
+    "react": "^15.4.2",
     "react-dom": "^15.4.1",
     "speakingurl": "^11.0.0",
     "tcomb": "^3.2.16",
+    "webpack": "^1.14.0",
+    "webpack-livereload-plugin": "^0.10.0",
+    "webpack-server": "^0.1.2",
     "winston": "^2.3.0"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "extract-text-webpack-plugin": "^1.0.1",
+    "nodemon": "^1.11.0",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   }
 }
