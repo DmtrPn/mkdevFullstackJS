@@ -6,13 +6,13 @@ import db from "../../backend/db"
 class UserIndex extends React.Component {
     constructor(props) {
         super(props)
-        this.state.users = db.users
+        this.state.comments = db.perfomanceComments
     }
     render() {
-        const allUsers = this.state.users
+        const allComments = this.state.comments
         return <div>
             <p>
-                <Link to="/users/create" className="create-link">Add User</Link>
+                <Link to="/perfomances/${props.params.id}" className="create-link">Add User</Link>
             </p>
             <div>
                 {Object.keys(allUsers).map((id) => <Card user={allUsers[id]} />)}
